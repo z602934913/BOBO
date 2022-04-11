@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d299dcca-7fa6-4f35-b2e2-e66ff619894c" name="变更" comment="init_django">
-      <change afterPath="$PROJECT_DIR$/apps/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/cart/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/commodity/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/order/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/user/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/commodity/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/order/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/order/migrations/0002_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/user/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/user/migrations/0002_alter_address_phone_alter_address_zip_code.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/baseModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/commodity/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/commodity/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/order/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/order/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django_BOBO/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_BOBO/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django_BOBO/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_BOBO/urls.py" afterDir="false" />
     </list>
@@ -41,11 +46,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../BaiduNetdiskDownload/笔记和代码/day20 Django开发/代码/day16" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\XX\django_BOBO" />
       <recent name="F:\XX\django_BOBO\apps" />
     </key>
   </component>
@@ -85,6 +92,7 @@
       <updated>1649654180957</updated>
       <workItem from="1649654182769" duration="504000" />
       <workItem from="1649659481952" duration="1660000" />
+      <workItem from="1649661651175" duration="6692000" />
     </task>
     <task id="LOCAL-00001" summary="init_django">
       <created>1649654251297</created>
@@ -93,7 +101,21 @@
       <option name="project" value="LOCAL" />
       <updated>1649654251297</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="init_django">
+      <created>1649661874966</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1649661874966</updated>
+    </task>
+    <task id="LOCAL-00003" summary="init_django">
+      <created>1649661894252</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1649661894252</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
