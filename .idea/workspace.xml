@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d299dcca-7fa6-4f35-b2e2-e66ff619894c" name="变更" comment="init_django">
-      <change afterPath="$PROJECT_DIR$/apps/commodity/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/order/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/order/migrations/0002_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/user/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/user/migrations/0002_alter_address_phone_alter_address_zip_code.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/baseModel.py" afterDir="false" />
+    <list default="true" id="d299dcca-7fa6-4f35-b2e2-e66ff619894c" name="变更" comment="数据库构建">
+      <change afterPath="$PROJECT_DIR$/apps/static/css/bootstrap-theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/static/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/static/css/bootstrap_4.6.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/templates/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/user/migrations/0003_alter_user_is_active.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/user/templates/activate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/user/templates/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/user/templates/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/user/templates/register_01.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/encrypt.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/form.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/commodity/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/commodity/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/order/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/order/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django_BOBO/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_BOBO/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django_BOBO/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_BOBO/urls.py" afterDir="false" />
     </list>
@@ -27,6 +31,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -43,17 +48,25 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../BaiduNetdiskDownload/笔记和代码/day20 Django开发/代码/day16" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/apps/static/css" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\XX\django_BOBO\apps\static\css" />
+      <recent name="F:\XX\django_BOBO\apps\user\templates" />
+      <recent name="F:\XX\django_BOBO\utils" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\XX\django_BOBO" />
+      <recent name="F:\XX\django_BOBO\apps\user" />
       <recent name="F:\XX\django_BOBO\apps" />
+      <recent name="F:\XX\django_BOBO" />
+      <recent name="F:\XX\django_BOBO\templates" />
     </key>
   </component>
   <component name="RunManager">
@@ -92,7 +105,11 @@
       <updated>1649654180957</updated>
       <workItem from="1649654182769" duration="504000" />
       <workItem from="1649659481952" duration="1660000" />
-      <workItem from="1649661651175" duration="6692000" />
+      <workItem from="1649661651175" duration="6780000" />
+      <workItem from="1649678399096" duration="14000" />
+      <workItem from="1649678416164" duration="5475000" />
+      <workItem from="1649731027768" duration="1964000" />
+      <workItem from="1649737390304" duration="12559000" />
     </task>
     <task id="LOCAL-00001" summary="init_django">
       <created>1649654251297</created>
@@ -115,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649661894252</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="数据库构建">
+      <created>1649672003804</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1649672003804</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,6 +158,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init_django" />
-    <option name="LAST_COMMIT_MESSAGE" value="init_django" />
+    <MESSAGE value="数据库构建" />
+    <option name="LAST_COMMIT_MESSAGE" value="数据库构建" />
   </component>
 </project>

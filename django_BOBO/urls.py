@@ -16,10 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from apps.user import admin
+from apps.user import views as u_v
 import tinymce
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('gogogo/',admin.test_01),
-    path('tinymce/',include('tinymce.urls'))
+    path('tinymce/',include('tinymce.urls')),
+
+    #注册界面
+    path('user/register',u_v.register),
+    path('user/activate/<str:nid>',u_v.activate)
 ]

@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+		{% block content %}
+            <div class="r_con fr">
+			<div class="reg_title clearfix">
+				<h1>用户注册</h1>
+				<a href="#">登录</a>
+			</div>
+			<div class="reg_form clearfix">
+				<form method="POST" >
+                    {% csrf_token %}
+                    <ul>
+                    {% for field in form %}
+                        <li>
+                            <label>{{ field.label }}</label>
+                            {{ field }}
+                            <span style="color: red;margin-left:70px">{{ field.errors.0 }}</span>
+                        </li>
+                    {% endfor %}
+					<li class="agreement" style="list-style:none">
+						<input type="checkbox" name="allow" id="allow" checked="checked">
+						<label>同意”天天生鲜用户使用协议“</label>
+						<span class="error_tip2">提示信息</span>
+					</li>
+					<li class="reg_sub" style="list-style:none">
+						<input type="submit" value="注 册" name="">
+					</li>
+                    </ul>
+				</form>
+			</div>
+		</div>
+        {% endblock %}
+
