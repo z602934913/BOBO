@@ -161,12 +161,7 @@ STATICFILES_DIRS = [
 ]
 
 #邮件相关配置
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.163.com' # 腾讯QQ邮箱 SMTP 服务器地址
-EMAIL_PORT = 25  # SMTP服务的端口号
-EMAIL_HOST_USER = 'expcman@163.com' # 发送邮件的QQ邮箱
-EMAIL_HOST_PASSWORD = 'UBONIXHSEUKIVRJH'  # 在QQ邮箱->设置->帐户->“POP3/IMAP......服务” 里得到的在第三方登录QQ邮箱授权码
-EMAIL_FROM = 'django<expcman@163.com>'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
