@@ -26,5 +26,16 @@ urlpatterns = [
 
     #注册界面
     path('user/register',u_v.register),
-    path('user/activate/<str:nid>',u_v.activate)
+    path('user/activate/<str:nid>',u_v.activate),
+
+    #登录界面
+    path('user/login',u_v.login),
+    path('user/code', u_v.image_code),
+    path('user/logout', u_v.logout),
+
+    #用户界面,
+    path('user/user_center_info', u_v.user_center_info),
+    path('user/user_center_order', u_v.user_center_oredr),
+    path('user/user_center_site', u_v.user_center_site ),
 ]
+

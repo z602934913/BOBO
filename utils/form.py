@@ -76,3 +76,43 @@ class RegisterModelForm(BootStrapModelForm):
         password = self.cleaned_data.get('password')
         return md5(password)
 
+
+class LoginModelForm(forms.ModelForm):
+    username = forms.CharField(
+        label="用户名",
+        widget=forms.TextInput,
+        required=True
+    )
+    password = forms.CharField(
+        label="密码",
+        widget=forms.PasswordInput(render_value=True),
+        required=True,
+        error_messages={
+            'required': '小伙子，用户名和密码都不能为空啊！'
+        }
+    )
+    bootstrap_exclude_fields = []
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # 循环ModelForm中的所有字段，给每个字段的插件设置
+        for name, field in self.fields.items():
+            if name in self.bootstrap_exclude_fields:
+                continue
+            # 字段中有属性，保留原来的属性，没有属性，才增加。
+            if name == 'username':
+                field.widget.attrs = {
+                    "class": "name_input",
+                    "placeholder": field.label
+                }
+            elif name == 'password':
+                field.widget.attrs = {
+                    "class": "pass_input",
+                    "placeholder": field.label
+                }
+
+    class Meta:
+        model = User
+        fields = ['username','password']
+
+
