@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from utils.baseModel import BaseModel
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from django.conf import settings
+from django.contrib import  auth
 
 
 class User(AbstractUser,BaseModel):
@@ -21,6 +22,11 @@ class User(AbstractUser,BaseModel):
         token = serializer.dumps(info)
         return token.decode()
 
+    # class Meta:
+    #     db_table = 'df_user'
+    #     verbose_name = '用户'
+    #     verbose_name_plural = verbose_name
+
 
 class Address(BaseModel):
     '''地址表'''
@@ -31,6 +37,9 @@ class Address(BaseModel):
     phone = models.CharField(verbose_name='联系电话',max_length=11)
     is_default = models.BooleanField(verbose_name='默认地址？',default=False)
 
-
+    class Meta:
+        db_table = 'df_address'
+        verbose_name = '地址'
+        verbose_name_plural = verbose_name
 
 

@@ -2,8 +2,9 @@ from io import BytesIO
 
 from django.core import mail
 from django.core.cache import cache
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django_redis import get_redis_connection
 
 from utils.code import check_code
 from utils.encrypt import SecretOauth
@@ -11,20 +12,22 @@ from utils.form import RegisterModelForm, LoginModelForm
 from .models import User
 from utils.encrypt import md5
 
+from ..commodity.models import CommoditySKU
+from utils.list_mod_ult import img_url
+
 
 def register(request):
     if request.method == 'GET':
         form = RegisterModelForm()
-        return render(request,'../templates/register_01.html',{'form':form})
+        return render(request, '../templates/register_01.html', {'form': form})
 
-    form = RegisterModelForm(data = request.POST)
+    form = RegisterModelForm(data=request.POST)
     if form.is_valid():
         form.save()
         dd = SecretOauth().dumps(request.POST['username'])
-        cache.set(request.POST['username'],str(dd),3600)
+        cache.set(request.POST['username'], str(dd), 3600)
 
-
-        #邮件发送
+        # 邮件发送
         text = '你好，激活邮件如下\n' + 'http://127.0.0.1:8000/user/activate/' + dd + '\n 感谢您注册'
         recipient = request.POST['email']
         mail.send_mail(
@@ -38,11 +41,11 @@ def register(request):
     return render(request, '../templates/register_01.html', {'form': form})
 
 
-def activate(request,nid):
+def activate(request, nid):
     dd = SecretOauth().loads(nid)
     user = User.objects.filter(username=dd)
     if not dd or not user:
-        return render(request,'../templates/activate.html',{'title':'激活链接有误或已过期'})
+        return render(request, '../templates/activate.html', {'title': '激活链接有误或已过期'})
     user = user[0]
     if user.is_active == 1:
         return render(request, '../templates/activate.html', {'title': '请勿重复激活'})
@@ -55,15 +58,16 @@ def activate(request,nid):
 def login(request):
     if request.method == 'GET':
         form = LoginModelForm()
-        return render(request,'../templates/login.html',{'form':form})
+        return render(request, '../templates/login.html', {'form': form})
     form = LoginModelForm(data=request.POST)
     # 验证码的校验
     user_input_code = request.POST['code']
     code = request.session.get('image_code', "")
-    if code.upper() != user_input_code.upper() and code == '':
+    if code.upper() != user_input_code.upper() or code == '':
         code_error = '大兄弟，验证码错误'
-        return render(request, 'login.html', {'form': form,'code_error':code_error},)
-    admin_object = User.objects.filter(username=request.POST['username'],password=md5(request.POST['password'])).first()
+        return render(request, 'login.html', {'form': form, 'code_error': code_error}, )
+    admin_object = User.objects.filter(username=request.POST['username'],
+                                       password=md5(request.POST['password'])).first()
     if not admin_object:
         form.add_error("password", "同志，用户名或密码错咯！")
         return render(request, 'login.html', {'form': form})
@@ -89,17 +93,30 @@ def image_code(request):
     img.save(stream, 'png')
     return HttpResponse(stream.getvalue())
 
+
 def logout(request):
     request.session.clear()
     return redirect('/user/login')
 
+
 def user_center_info(request):
-    return render(request,'user_center_info.html')
+    if request.session['info']['id']:
+        # 获取redis内的内容
+        history_key = 'history_%d' % request.session['info']['id']
+        conn = get_redis_connection('default')
+        history = conn.lrange('history_25', 0, 5)
+
+        # 根据内容获取类和图片的URL
+        history_com = [CommoditySKU.objects.filter(id=i).first() for i in history]
+        com_img = img_url(history_com)
+        com_his = [[i, j] for i, j in zip(history_com, com_img)]
+
+    return render(request, 'user_center_info.html', {'com_his': com_his})
 
 
 def user_center_oredr(request):
-    return render(request,'user_center_order.html')
+    return render(request, 'user_center_order.html')
 
 
 def user_center_site(request):
-    return render(request,'user_center_site.html')
+    return render(request, 'user_center_site.html')

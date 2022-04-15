@@ -1,4 +1,5 @@
-from django.db import  models
+from django.db import models
+from datetime import datetime
 
 class BaseModel(models.Model):
     '''模型基类'''

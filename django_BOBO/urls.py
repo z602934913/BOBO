@@ -15,13 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from apps.user import admin
+# from apps.user import admin
+from django.contrib import admin
 from apps.user import views as u_v
+from apps.commodity import views as c_v
 import tinymce
 
+
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    path('gogogo/',admin.test_01),
+    path('admin/', admin.site.urls),
+    # path('gogogo/',admin.test_01),
     path('tinymce/',include('tinymce.urls')),
 
     #注册界面
@@ -37,5 +40,17 @@ urlpatterns = [
     path('user/user_center_info', u_v.user_center_info),
     path('user/user_center_order', u_v.user_center_oredr),
     path('user/user_center_site', u_v.user_center_site ),
+
+    #商品首页
+    path('index/',c_v.index),
+    path('index/detail/<str:cid>',c_v.detail),
+    path('index/detail/', c_v.detail),
+    path('index/list', c_v.all_list),
+    # path('index/list/?pa=<str:aid>?type=<str:tid>?page=<str:pid>', c_v.all_list),
+    # path('index/list/?type=<str:tid>', c_v.all_list),
+    # path('index/list/pa=<str:aid>', c_v.all_list),
+    # path('index/list/pa=<str:aid>?type=<str:tid>', c_v.all_list),
+    path('index/list/?type=<str:tid>', c_v.all_list),
+
 ]
 
