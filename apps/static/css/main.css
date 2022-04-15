@@ -242,7 +242,9 @@ html,body{height:100%}
 .prize_bar{height:72px;background-color:#fff5f5;line-height:72px;}
 .prize_bar .show_pirze{font-size:20px;color:#ff3e3e;padding-left:20px}
 .prize_bar .show_pirze em{font-style:normal;font-size:36px;padding-left:10px}
-.prize_bar .show_unit{padding-left:150px}
+.prize_bar .show_unit{padding-left:100px}
+.prize_bar .show_stock{padding-left:200px}
+
 
 .goods_num{height:52px;margin-top:19px;}
 .goods_num .num_name{width:70px;height:52px;line-height:52px;}

@@ -94,13 +94,13 @@ WSGI_APPLICATION = 'django_BOBO.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'django_bobo',  
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_bobo',
         'HOST': 'localhost',
-        'PORT': 3306,  
-        'USER': 'root',  
-        'PASSWORD': '1234' 
-    } 
+        'PORT': 3306,
+        'USER': 'root',
+        'PASSWORD': '1234'
+    }
 }
 
 # redis配置
@@ -140,7 +140,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-Hans'
 
 TIME_ZONE = 'UTC'
 

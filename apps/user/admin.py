@@ -1,6 +1,6 @@
 from django.contrib import admin
-from django.shortcuts import HttpResponse
-# Register your models here.
+from .models import Address,User
 
-def test_01(request):
-    return HttpResponse('1111')
+
+admin.site.register(Address)
+admin.site.register(User)

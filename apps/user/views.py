@@ -60,7 +60,7 @@ def login(request):
     # 验证码的校验
     user_input_code = request.POST['code']
     code = request.session.get('image_code', "")
-    if code.upper() != user_input_code.upper() and code == '':
+    if code.upper() != user_input_code.upper() or code == '':
         code_error = '大兄弟，验证码错误'
         return render(request, 'login.html', {'form': form,'code_error':code_error},)
     admin_object = User.objects.filter(username=request.POST['username'],password=md5(request.POST['password'])).first()

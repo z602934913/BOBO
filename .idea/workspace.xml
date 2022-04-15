@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d299dcca-7fa6-4f35-b2e2-e66ff619894c" name="变更" comment="注册模组完成">
-      <change afterPath="$PROJECT_DIR$/Monaco.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/static/images/test_01.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/user/templates/beifen_center_layout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/user/templates/center_layout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/user/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/user/templates/user_center_info.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/user/templates/user_center_order.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/user/templates/user_center_site.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/code.py" afterDir="false" />
+    <list default="true" id="d299dcca-7fa6-4f35-b2e2-e66ff619894c" name="变更" comment="login_model">
+      <change afterPath="$PROJECT_DIR$/apps/commodity/migrations/0002_alter_commoditytype_options_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/commodity/migrations/0003_alter_commoditytype_options_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/commodity/migrations/0004_alter_commoditytype_options.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/commodity/migrations/0005_alter_commdityimage_options_alter_commodity_options_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/commodity/migrations/0006_alter_commodity_options.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/commodity/migrations/0007_alter_commodity_detail.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/commodity/migrations/0008_alter_commdityimage_image_alter_commoditysku_image_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/commodity/templates/detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/commodity/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/commodity/templates/index_layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/commodity/templates/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/user/migrations/0004_alter_user_is_active.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/user/migrations/0005_alter_address_options_alter_address_table.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/list_mod_ult.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/templates/register_01.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/templates/register_01.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/commodity/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/commodity/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/commodity/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/commodity/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/commodity/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/commodity/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/templates/center_layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/templates/center_layout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_BOBO/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_BOBO/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django_BOBO/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_BOBO/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/form.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/baseModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/baseModel.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +40,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Setup Script" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -50,17 +63,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/apps/user/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/apps/commodity/templates" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/utils/img_url" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\XX\django_BOBO\apps\commodity\templates" />
       <recent name="F:\XX\django_BOBO\apps\user\templates" />
       <recent name="F:\XX\django_BOBO" />
       <recent name="F:\XX\django_BOBO\utils" />
       <recent name="F:\XX\django_BOBO\apps\static\images" />
-      <recent name="F:\XX\django_BOBO\apps\static\css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\XX\django_BOBO\apps\user" />
@@ -111,7 +125,10 @@
       <workItem from="1649731027768" duration="1964000" />
       <workItem from="1649737390304" duration="14146000" />
       <workItem from="1649767223599" duration="5366000" />
-      <workItem from="1649823038058" duration="13728000" />
+      <workItem from="1649823038058" duration="14644000" />
+      <workItem from="1649847345901" duration="96000" />
+      <workItem from="1649906706170" duration="20771000" />
+      <workItem from="1649990161716" duration="6757000" />
     </task>
     <task id="LOCAL-00001" summary="init_django">
       <created>1649654251297</created>
@@ -155,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649759829914</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="login_model">
+      <created>1649846052013</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1649846052013</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +200,7 @@
     <MESSAGE value="init_django" />
     <MESSAGE value="数据库构建" />
     <MESSAGE value="注册模组完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="注册模组完成" />
+    <MESSAGE value="login_model" />
+    <option name="LAST_COMMIT_MESSAGE" value="login_model" />
   </component>
 </project>

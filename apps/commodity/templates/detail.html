@@ -1,0 +1,149 @@
+{% extends 'index_layout.html' %}
+<body>
+    {% block index_0 %}
+        <div class="subnav_con fl">
+            <h1>全部商品分类</h1>
+            <span></span>
+            <ul class="subnav">
+                <li><a href="#" class="fruit">新鲜水果</a></li>
+                <li><a href="#" class="seafood">海鲜水产</a></li>
+                <li><a href="#" class="meet">猪牛羊肉</a></li>
+                <li><a href="#" class="egg">禽类蛋品</a></li>
+                <li><a href="#" class="vegetables">新鲜蔬菜</a></li>
+                <li><a href="#" class="ice">速冻食品</a></li>
+            </ul>
+        </div>
+    {% endblock %}
+
+{#	<div class="breadcrumb">#}
+{#		<a href="#">全部分类</a>#}
+{#		<span>></span>#}
+{#		<a href="#">新鲜水果</a>#}
+{#		<span>></span>#}
+{#		<a href="#">商品详情</a>#}
+{#	</div>#}
+    {% block context %}
+	<div class="goods_detail_con clearfix">
+		<div class="goods_detail_pic fl"><img src="../../{{ com_img }}"></div>
+
+		<div class="goods_detail_list fr">
+			<h3>{{ com_one.name }}</h3>
+			<p>{{ com_one.desc }}</p>
+			<div class="prize_bar">
+                <span class="show_pirze" >¥<em><span id="one_price">{{ com_one.price }}</span></em></span>
+				<span class="show_unit">单  位：{{ com_one.untie }}  </span>
+                <span class="show_stock" style="margin-left: 20px">库 存：<span id="stock">{{ com_one.stock }}</span></span>
+			</div>
+			<div class="goods_num clearfix">
+				<div class="num_name fl">数 量：</div>
+				<div class="num_add fl">
+					<input type="text" class="num_show fl" value="1" id ='now_num'>
+					<a href="javascript:;" class="add fr" id="btnAdd">+</a>
+					<a href="javascript:;" class="minus fr" id="btnMinus">-</a>
+				</div> 
+			</div>
+			<div class="total">总价：<em><span id ='price'>{{ com_one.price }}</span>元</em></div>
+			<div class="operate_btn">
+				<a href="javascript:;" class="buy_btn">立即购买</a>
+				<a href="javascript:;" class="add_cart" id="add_cart">加入购物车</a>				
+			</div>
+		</div>
+	</div>
+
+	<div class="main_wrap clearfix">
+		<div class="l_wrap fl clearfix">
+			<div class="new_goods">
+				<h3>新品推荐</h3>
+				<ul>
+					<li>
+						<a href="#"><img src="../../static/images/goods/goods001.jpg"></a>
+						<h4><a href="#">进口柠檬</a></h4>
+						<div class="prize">￥3.90</div>
+					</li>
+					<li>
+						<a href="#"><img src="../../static/images/goods/goods002.jpg"></a>
+						<h4><a href="#">玫瑰香葡萄</a></h4>
+						<div class="prize">￥16.80</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="r_wrap fr clearfix">
+			<ul class="detail_tab clearfix">
+				<li class="active">商品介绍</li>
+				<li>评论</li>
+			</ul>
+
+			<div class="tab_content">
+				<dl>
+					<dt>商品详情：</dt>
+					<dd>{{ com_one.commodities.detail }}</dd>
+				</dl>
+			</div>
+
+		</div>
+	</div>
+
+
+    {% endblock %}
+    <div class="add_jump"></div>
+    {% block script %}
+	<script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+	<script type="text/javascript">
+		var $add_x = $('#add_cart').offset().top;
+		var $add_y = $('#add_cart').offset().left;
+
+		var $to_x = $('#show_count').offset().top;
+		var $to_y = $('#show_count').offset().left;
+
+		$(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'})
+		$('#add_cart').click(function(){
+			$(".add_jump").stop().animate({
+				'left': $to_y+7,
+				'top': $to_x+7},
+				"fast", function() {
+					$(".add_jump").fadeOut('fast',function(){
+						$('#show_count').html(2);
+					});
+
+			});
+		});
+
+        $(function () {
+            binBtnAddEven();
+            binBtnMinusEven();
+        })
+
+
+        function binBtnAddEven(){
+            $('#btnAdd').click(function (){
+                const stock = document.getElementById("stock").innerText;
+                let now_num = document.getElementById("now_num").value;
+                let one_price = document.getElementById("one_price").innerText;
+                now_num ++;
+                if (now_num <= stock){
+                    const num = (one_price * now_num).toFixed(2);
+                    document.getElementById("now_num").value = now_num;
+                    document.getElementById("price").innerText = num;
+                };
+
+            })
+        };
+        function binBtnMinusEven(){
+            $('#btnMinus').click(function (){
+                const stock = document.getElementById("stock").innerText;
+                let now_num = document.getElementById("now_num").value;
+                let one_price = document.getElementById("one_price").innerText;
+                now_num --;
+                if (now_num >= 1){
+                    const num = (one_price * now_num).toFixed(2);
+                    document.getElementById("now_num").value = now_num;
+                    document.getElementById("price").innerText = num;
+                };
+            })
+        };
+
+
+	</script>
+	{% endblock %}
