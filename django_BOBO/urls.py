@@ -14,43 +14,44 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 # from apps.user import admin
 from django.contrib import admin
 from apps.user import views as u_v
 from apps.commodity import views as c_v
+from apps.cart import views as a_c
 import tinymce
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('gogogo/',admin.test_01),
-    path('tinymce/',include('tinymce.urls')),
+    path('tinymce/', include('tinymce.urls')),
 
-    #注册界面
-    path('user/register',u_v.register),
-    path('user/activate/<str:nid>',u_v.activate),
+    # 注册界面
+    path('user/register', u_v.register),
+    path('user/activate/<str:nid>', u_v.activate),
 
-    #登录界面
-    path('user/login',u_v.login),
+    # 登录界面
+    path('user/login', u_v.login),
     path('user/code', u_v.image_code),
     path('user/logout', u_v.logout),
 
-    #用户界面,
+    # 用户界面,
     path('user/user_center_info', u_v.user_center_info),
     path('user/user_center_order', u_v.user_center_oredr),
-    path('user/user_center_site', u_v.user_center_site ),
+    path('user/user_center_site', u_v.user_center_site),
 
-    #商品首页
-    path('index/',c_v.index),
-    path('index/detail/<str:cid>',c_v.detail),
+    # 商品首页
+    path('index/', c_v.index),
+    path('index/detail/<str:cid>', c_v.detail),
     path('index/detail/', c_v.detail),
     path('index/list', c_v.all_list),
-    # path('index/list/?pa=<str:aid>?type=<str:tid>?page=<str:pid>', c_v.all_list),
     # path('index/list/?type=<str:tid>', c_v.all_list),
-    # path('index/list/pa=<str:aid>', c_v.all_list),
-    # path('index/list/pa=<str:aid>?type=<str:tid>', c_v.all_list),
-    path('index/list/?type=<str:tid>', c_v.all_list),
+    path('index/list/add_cart', c_v.add_cart),
+
+    # 购物车页面
+    path('cart/', a_c.cart),
+    path('cart/change', a_c.cart_change),
+    path('cart/del', a_c.cart_del),
 
 ]
-

@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>天天生鲜-购物车</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+</head>
+<body>
+	<div class="header_con">
+		<div class="header">
+			<div class="welcome fl">欢迎来到天天生鲜!</div>
+			<div class="fr">
+				<div class="login_info fl">
+					欢迎您：<em>张 山</em>
+				</div>
+                {% if not request.session.info %}
+                    <div class="login_btn fl">
+					    <a href="http://127.0.0.1:8000/user/login">登录</a>
+					    <span>|</span>
+					    <a href="http://127.0.0.1:8000/user/register">注册</a>
+				    </div>
+                {% else %}
+				<div class="user_link fl">
+					<span>|</span>
+					<a href="http://127.0.0.1:8000/user/user_center_info">{{ request.session.info.name }}</a>
+					<span>|</span>
+					<a href="http://127.0.0.1:8000/user/login">注销</a>
+					<span>|</span>
+					<a href="/cart">我的购物车</a>
+					<span>|</span>
+					<a href="http://127.0.0.1:8000/user/user_center_order">我的订单</a>
+				</div>
+                {% endif %}
+			</div>
+		</div>
+	</div>
+
+	<div class="search_bar clearfix">
+		<a href="../index" class="logo fl"><img src="../../static/images/logo.png"></a>
+		<div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;购物车</div>
+		<div class="search_con fr">
+			<input type="text" class="input_text fl" name="" placeholder="搜索商品">
+			<input type="button" class="input_btn fr" name="" value="搜索">
+		</div>		
+	</div>
+
+	<div class="total_count">全部商品<em>{{ com_all_num }}</em>件</div>
+    <ul class="cart_list_th clearfix">
+		<li class="col01">商品名称</li>
+		<li class="col02">商品单位</li>
+		<li class="col03">商品价格</li>
+		<li class="col04">数量</li>
+		<li class="col05">小计</li>
+		<li class="col06">操作</li>
+	</ul>
+    {% for obj in com_all %}
+        <ul class="cart_list_td clearfix" id="com_{{ obj.0.id }}">
+            <li class="col01"><input type="checkbox" name="" checked></li>
+		    <li class="col02"><img src="../{{ obj.1 }}"></li>
+		    <li class="col03">{{ obj.0.name }}<br><em>{{ obj.0.price }}元/{{ obj.0.untie }}</em></li>
+		    <li class="col04">{{ obj.0.untie }}</li>
+		    <li class="col05">{{ obj.0.price }}元</li>
+		    <li class="col06">
+		    	<div class="num_add">
+		    		<a href="javascript:$(function (){btnAdd({{ obj.0.id }},{{ obj.0.stock }},{{ obj.0.price}})});" class="add fl" id="{{ obj.0.id }}">+</a>
+		    		<input type="text" class="num_show fl" value="{{ obj.2.0 }}"  id="value_{{ obj.0.id }}">
+		    		<a href="javascript:$(function (){btnMinus({{ obj.0.id }},{{ obj.0.price}})});" class="minus fl" id="'btnMinus_{{ obj.0.id }}">-</a>
+		    	</div>
+		    </li>
+		    <li class="col07"><span id="price_{{ obj.0.id }}">{{ obj.2.1 }}</span></li>
+		    <li class="col08"><a href="javascript:$(function (){delAll({{ obj.0.id }}) });">删除</a></li>
+        </ul>
+    {% endfor %}
+
+{##}
+{#	<ul class="cart_list_td clearfix">#}
+{#		<li class="col01"><input type="checkbox" name="" checked></li>#}
+{#		<li class="col02"><img src="images/goods/goods012.jpg"></li>#}
+{#		<li class="col03">奇异果<br><em>25.80元/500g</em></li>#}
+{#		<li class="col04">500g</li>#}
+{#		<li class="col05">25.80元</li>#}
+{#		<li class="col06">#}
+{#			<div class="num_add">#}
+{#				<a href="javascript:;" class="add fl">+</a>#}
+{#				<input type="text" class="num_show fl" value="1">	#}
+{#				<a href="javascript:;" class="minus fl">-</a>	#}
+{#			</div>#}
+{#		</li>#}
+{#		<li class="col07">25.80元</li>#}
+{#		<li class="col08"><a href="javascript:;">删除</a></li>#}
+{#	</ul>#}
+{##}
+{#	<ul class="cart_list_td clearfix">#}
+{#		<li class="col01"><input type="checkbox" name="" checked></li>#}
+{#		<li class="col02"><img src="images/goods/goods003.jpg"></li>#}
+{#		<li class="col03">大兴大棚草莓<br><em>16.80元/500g</em></li>#}
+{#		<li class="col04">500g</li>#}
+{#		<li class="col05">16.80元</li>#}
+{#		<li class="col06">#}
+{#			<div class="num_add">#}
+{#				<a href="javascript:;" class="add fl">+</a>#}
+{#				<input type="text" class="num_show fl" value="1">	#}
+{#				<a href="javascript:;" class="minus fl">-</a>	#}
+{#			</div>#}
+{#		</li>#}
+{#		<li class="col07">16.80元</li>#}
+{#		<li class="col08"><a href="javascript:;">删除</a></li>#}
+{#	</ul>#}
+
+
+	<ul class="settlements">
+		<li class="col01"><input type="checkbox" name="" checked=""></li>
+		<li class="col02">全选</li>
+		<li class="col03">合计(不含运费)：<span>¥</span><em><span id="total_price">{{ count }}</span></em><br>共计<b>{{ com_all_num }}</b>件商品</li>
+		<li class="col04"><a href="place_order.html">去结算</a></li>
+	</ul>
+
+	<div class="footer">
+		<div class="foot_link">
+			<a href="#">关于我们</a>
+			<span>|</span>
+			<a href="#">联系我们</a>
+			<span>|</span>
+			<a href="#">招聘人才</a>
+			<span>|</span>
+			<a href="#">友情链接</a>		
+		</div>
+		<p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
+		<p>电话：010-****888    京ICP备*******8号</p>
+	</div>
+	
+</body>
+<script>
+    function btnAdd(x,stock,price){
+        const btn = 'value_' + x;
+        const pri = 'price_' + x;
+        let value = document.getElementById(btn).value;
+        let now_pri = document.getElementById(pri).innerText;
+        value ++;
+        if (value <= stock){
+            document.getElementById(btn).value = value ;
+            document.getElementById(pri).innerText =( Number(now_pri) + price).toFixed(2);
+            $.ajax({
+                url:'/cart/change',
+                type:'post',
+                data:{'com_id':x, 'now_num':value},
+                dataType:'JSON',
+                success:function (res){
+                    if (res.status){
+                    }else{
+                        alert(res.im)
+                        location.reload()
+                    }
+                }
+            })
+            reCount(1,price)
+        }else{
+            document.getElementById(btn).value = stock ;
+        }
+    }
+
+    function btnMinus(x,price){
+        const btn = 'value_' + x;
+        const pri = 'price_' + x;
+        let value = document.getElementById(btn).value;
+        let now_pri = document.getElementById(pri).innerText;
+        value --;
+        if (value >= 0){
+            document.getElementById(btn).value = value ;
+            document.getElementById(pri).innerText = (Number(now_pri) - price).toFixed(2);
+            $.ajax({
+                url:'/cart/change',
+                type:'post',
+                data:{'com_id':x, 'now_num':value},
+                dataType:'JSON',
+                success:function (res){
+                    if (res.status){
+                    }else{
+                        alert(res.im)
+                        location.reload()
+                    }
+                }
+            })
+            reCount(2,price)
+        }else{
+            alert('你还想送我东西不成？')
+            document.getElementById(btn).value = 0 ;
+        }
+    }
+
+    function delAll(x){
+        const com_id = 'com_' + x;
+        const elem = document.getElementById(com_id);
+        elem.parentNode.removeChild(elem);
+        $.ajax({
+            url:'/cart/del',
+            type:'post',
+            data:{'com_id':x},
+            dataType:'JSON',
+            success:function (res){
+                if (res.status){
+                }else{
+                    location.reload()
+                }
+            }
+        })
+        location.reload();
+    }
+
+    function reCount(am,price){
+        let allCount = document.getElementById('total_price').innerText;
+        if (allCount == null){
+            allCount = 0
+        };
+        allCount = Number(allCount)
+        console.log(typeof allCount)
+        console.log(typeof price)
+        if (am===1){
+            allCount += price;
+        }else{
+            allCount -= price;
+        }
+        document.getElementById('total_price').innerText = allCount.toFixed(2);
+    }
+
+</script>
+</html>
