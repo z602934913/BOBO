@@ -45,7 +45,7 @@
 			<div class="total">总价：<em><span id ='price'>{{ com_one.price }}</span>元</em></div>
 			<div class="operate_btn">
 				<a href="javascript:;" class="buy_btn">立即购买</a>
-				<a href="javascript:;" class="add_cart" id="add_cart">加入购物车</a>				
+				<a href="javascript:" class="add_cart" id="add_cart">加入购物车</a>
 			</div>
 		</div>
 	</div>
@@ -113,6 +113,7 @@
         $(function () {
             binBtnAddEven();
             binBtnMinusEven();
+            binBtnAddCartEven();
         })
 
 
@@ -132,7 +133,6 @@
         };
         function binBtnMinusEven(){
             $('#btnMinus').click(function (){
-                const stock = document.getElementById("stock").innerText;
                 let now_num = document.getElementById("now_num").value;
                 let one_price = document.getElementById("one_price").innerText;
                 now_num --;
@@ -143,6 +143,28 @@
                 };
             })
         };
+        function binBtnAddCartEven(){
+            const com_id = {{ com_one.id }};
+            $('#add_cart').click(function (){
+                let now_num = document.getElementById("now_num").value;
+                $.ajax({
+                    url:'../list/add_cart',
+                    type:'post',
+                    data:{'com_id':com_id,'now_num':now_num},
+                    dataType:'JSON',
+                    success:function (res){
+                        if (res.status){
+                            alert(res.im)
+
+                        }else{
+                            alert(res.im)
+                            location.reload()
+                        }
+                    }
+                })
+            })
+        };
+
 
 
 	</script>

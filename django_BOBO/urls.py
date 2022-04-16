@@ -19,6 +19,7 @@ from django.urls import path,include
 from django.contrib import admin
 from apps.user import views as u_v
 from apps.commodity import views as c_v
+from apps.cart import views as a_c
 import tinymce
 
 
@@ -46,11 +47,11 @@ urlpatterns = [
     path('index/detail/<str:cid>',c_v.detail),
     path('index/detail/', c_v.detail),
     path('index/list', c_v.all_list),
-    # path('index/list/?pa=<str:aid>?type=<str:tid>?page=<str:pid>', c_v.all_list),
     # path('index/list/?type=<str:tid>', c_v.all_list),
-    # path('index/list/pa=<str:aid>', c_v.all_list),
-    # path('index/list/pa=<str:aid>?type=<str:tid>', c_v.all_list),
-    path('index/list/?type=<str:tid>', c_v.all_list),
+    path('index/list/add_cart', c_v.add_cart),
+
+    #购物车页面
+    path('cart/',a_c.cart)
 
 ]
 

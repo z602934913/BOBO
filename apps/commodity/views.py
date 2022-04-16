@@ -9,6 +9,8 @@ from .models import IndexCommdityBanner, IndexPromotioinBanner, IndexTypeCommdit
     CommdityImage
 
 from utils.pagination import Pagination
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 
 def index(request):
@@ -114,3 +116,46 @@ def all_list(request):
     context['new_com'] = new_com
 
     return render(request, '../templates/list.html', context)
+
+
+@csrf_exempt
+def add_cart(request):
+    # 获取ajax传递过来的信息，com_id:商品ID, now_num:商品数量
+    com_id = request.POST['com_id']
+    now_num = int(request.POST['now_num'])
+    # 链接redis
+    conn = get_redis_connection('default')
+
+    # 放入redis中
+    if request.session['info']['id']:
+
+        # 获取用户购物车ID，购物车状态,商品库存量,
+        cart_key = 'cart_%d' % request.session['info']['id']
+        cart_res = int(conn.hget(cart_key,com_id)) if conn.hget(cart_key,com_id) else 0
+        com = CommoditySKU.objects.filter(id=com_id).first()
+        stock = -1 if not com else int(com.stock)
+        order_num = cart_res + now_num
+
+        # 判断添加数量是否正确
+        if stock == -1:
+            return HttpResponse(json.dumps({'status':False,'im':'添加数量有误'}, ensure_ascii=False))
+        elif now_num > stock:
+            return HttpResponse(json.dumps({'status':False,'im':'添加数量有误'}, ensure_ascii=False))
+        elif now_num + cart_res > stock:
+            order_num = stock
+
+        # 当购物车不存在该商品时
+        if not cart_res:
+            add_res = conn.hset(cart_key, com_id, order_num)
+            if add_res == 1:
+                data_dict = {'status': True, 'im':'添加成功'}
+                return HttpResponse(json.dumps(data_dict, ensure_ascii=False))
+
+        # 当商品存在的时候
+        add_res = conn.hset(cart_key, com_id, order_num)
+        if add_res == 0:
+            data_dict = {'status': True, 'im': '添加成功'}
+            return HttpResponse(json.dumps(data_dict, ensure_ascii=False))
+
+    data_dict = {'status': False, 'im': '有问题'}
+    return HttpResponse(json.dumps(data_dict, ensure_ascii=False))
