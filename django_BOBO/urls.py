@@ -20,6 +20,7 @@ from django.contrib import admin
 from apps.user import views as u_v
 from apps.commodity import views as c_v
 from apps.cart import views as a_c
+from apps.order import views as o_v
 import tinymce
 
 urlpatterns = [
@@ -53,5 +54,9 @@ urlpatterns = [
     path('cart/', a_c.cart),
     path('cart/change', a_c.cart_change),
     path('cart/del', a_c.cart_del),
+
+    # 订单页面
+    path('order/',o_v.order),
+    path('order/submit', o_v.order_submit),
 
 ]

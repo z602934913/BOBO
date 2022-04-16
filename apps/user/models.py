@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from utils.baseModel import BaseModel
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from django.conf import settings
-from django.contrib import  auth
+from django.contrib import auth
 
 
 class User(AbstractUser,BaseModel):
@@ -42,4 +42,6 @@ class Address(BaseModel):
         verbose_name = '地址'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return '用户名:' + self.user.username + '地址编码：' + str(self.id)
 

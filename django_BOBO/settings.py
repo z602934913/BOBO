@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 
 import MySQLdb
+
 # import sys
 # import os
 # from apps import user
@@ -31,7 +32,6 @@ SECRET_KEY = 'django-insecure-4o&_cmqgu!9af_vboww_nv6s&h0q&-@gev&t+_26)a!$s4vme1
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -88,7 +88,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_BOBO.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -99,7 +98,10 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': 3306,
         'USER': 'root',
-        'PASSWORD': '1234'
+        'PASSWORD': '1234',
+        'OPTIONS': {
+            'isolation_level': 'read committed',
+        }
     }
 }
 
@@ -114,8 +116,6 @@ CACHES = {
         }
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -136,7 +136,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -148,7 +147,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
@@ -157,10 +155,10 @@ STATIC_URL = '/static/'
 import os
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'apps','static')
+    os.path.join(BASE_DIR, 'apps', 'static')
 ]
 
-#邮件相关配置
+# 邮件相关配置
 
 
 # Default primary key field type

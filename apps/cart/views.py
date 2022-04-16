@@ -8,6 +8,7 @@ from django_redis import get_redis_connection
 from utils.commodity_change import commdity_change
 import json
 
+
 def cart(request):
     context = {}
     conn = get_redis_connection('default')
