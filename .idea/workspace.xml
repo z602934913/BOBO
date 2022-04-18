@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d299dcca-7fa6-4f35-b2e2-e66ff619894c" name="变更" comment="cart_">
-      <change afterPath="$PROJECT_DIR$/apps/order/migrations/0003_alter_ordercommodity_options_alter_orderinfo_options.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/order/migrations/0004_alter_orderinfo_order_id.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/order/migrations/0005_alter_orderinfo_order_id.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/order/migrations/0006_alter_orderinfo_order_id.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/order/migrations/0007_alter_orderinfo_transit_price.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/order/templates/place_order.html" afterDir="false" />
+    <list default="true" id="d299dcca-7fa6-4f35-b2e2-e66ff619894c" name="变更" comment="order_">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/cart/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/cart/templates/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/cart/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/cart/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/order/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/order/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/commodity/templates/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/commodity/templates/list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/order/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/order/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/order/templates/place_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/order/templates/place_order.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/order/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/order/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_BOBO/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_BOBO/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/templates/user_center_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/templates/user_center_order.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/user/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/django_BOBO/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_BOBO/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,6 +73,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/apps/order/templates" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/utils/img_url" />
   </component>
   <component name="RecentsManager">
@@ -152,7 +145,7 @@
       <workItem from="1650161429512" duration="9630000" />
       <workItem from="1650180602870" duration="6968000" />
       <workItem from="1650187831175" duration="74000" />
-      <workItem from="1650249413690" duration="672000" />
+      <workItem from="1650249413690" duration="8299000" />
     </task>
     <task id="LOCAL-00001" summary="init_django">
       <created>1649654251297</created>
@@ -245,7 +238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650110950539</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="order_">
+      <created>1650250103269</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1650250103269</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,6 +271,7 @@
     <MESSAGE value="detail" />
     <MESSAGE value="detail_cart" />
     <MESSAGE value="cart_" />
-    <option name="LAST_COMMIT_MESSAGE" value="cart_" />
+    <MESSAGE value="order_" />
+    <option name="LAST_COMMIT_MESSAGE" value="order_" />
   </component>
 </project>

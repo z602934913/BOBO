@@ -8,6 +8,7 @@ from ..user.models import User, Address
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.db import transaction
 
 
 def order(request):
@@ -66,13 +67,12 @@ def order(request):
 
 
 @csrf_exempt
+@transaction.atomic
 def order_submit(request):
-    print(request.POST)
-
     conn = get_redis_connection('default')
     this_id = request.session['info']['id']
     cart_id = 'cart_%d' % this_id
-    com_check_id = 'com_check_%d' % this_id
+    com_check = 'com_check_%d' % this_id
     freight_id = 'freight_%d' % this_id
 
     # 链接redis,查看缓存信息
@@ -80,44 +80,51 @@ def order_submit(request):
 
     # 从redis总获取：商品总数，商品详情，购物车情况和运费
     com_all_id = conn.hgetall(cart_id)
-    com_check_id = [str(i)[2:-1] for i in conn.smembers(com_check_id)]
-    freight_id = conn.get(freight_id)
+    com_check_id = [str(i)[2:-1] for i in conn.smembers(com_check)]
+    freight_price = conn.get(freight_id)
     Price, Count = 0, 0
     if com_all_id:
         # 创建订单ID:当前时间（年月日小时分秒 + X + 用户ID）
         timeId = datetime.now().strftime('%Y%m%d%H%M%S')
         trade_no = timeId + 'X' + str(request.session['info']['id'])
         xx = OrderInfo.objects.filter(trade_no=trade_no)
-
         rf = OrderInfo.objects.create(user_id=request.session['info']['id'],
                                       addr_id=request.POST['chk_value'],
                                       pay_method=request.POST['zhf_value'],
                                       total_count=Count,
                                       total_price=Price,
-                                      transit_price=int(freight_id),
+                                      transit_price=int(freight_price),
                                       trade_no=trade_no,
                                       )
         rf_id = OrderInfo.objects.filter(trade_no=trade_no).first().order_id
         rf.save()
+
         # 购物车信息加入订单
         for i, j in com_all_id.items():
             temp = CommoditySKU.objects.filter(id=i)
             check_key = 'check_' + str(temp.first().id)
+
+            # 判断库存
             if check_key in com_check_id:
                 if int(j) > temp.first().stock:
                     return HttpResponse('数量有误')
-                one_com = OrderCommodity.objects.create(order_id=rf_id,
-                                                        sku_id=int(i),
-                                                        count=int(j),
-                                                        price=int(j) * temp.first().price,
-                                                        comment='xxx'
-                                                        )
-                one_com.save()
+                # 和 @transaction.atomic 组成悲观锁
+                sku = CommoditySKU.objects.select_for_update().get(id=int(i))
+                sku.sales += int(j)
+                sku.stock -= int(j)
+
+                com = OrderCommodity.objects.create(order=rf,
+                                                    sku_id=int(i),
+                                                    count=int(j),
+                                                    price=int(j) * temp.first().price,
+                                                    comment='xxx')
+                com.save()
+                # 加入总价和总数量
                 Price += int(j) * temp.first().price
                 Count += 1
 
         rf = OrderInfo.objects.filter(order_id=rf_id).update(total_count=Count, total_price=Price)
-        conn.delete(cart_id,com_check_id,freight_id)
-
-
+        conn.delete(cart_id), conn.delete(com_check), conn.delete(freight_id)
     return HttpResponse(json.dumps({'status': True}, ensure_ascii=False))
+
+

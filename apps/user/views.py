@@ -14,6 +14,8 @@ from utils.encrypt import md5
 
 from ..commodity.models import CommoditySKU
 from utils.list_mod_ult import img_url
+from ..order.models import OrderInfo, OrderCommodity
+from utils.pagination import Pagination
 
 
 def register(request):
@@ -114,8 +116,19 @@ def user_center_info(request):
     return render(request, 'user_center_info.html', {'com_his': com_his})
 
 
-def user_center_oredr(request):
-    return render(request, 'user_center_order.html')
+def user_center_order(request):
+    all_order = OrderInfo.objects.filter(user_id=request.session['info']['id'])
+    all_order_com = []
+    page_obj = Pagination(request, all_order, 5, )
+    for i in page_obj.page_queryset:
+        # 订单信息，[订单商品信息，订单图库]
+        xx = OrderCommodity.objects.filter(order__trade_no=i.trade_no)
+        img = img_url([j.sku for j in xx])
+        ddd = [[m, n] for m, n in zip(xx, img)]
+        dd = [i, ddd]
+        all_order_com.append(dd)
+
+    return render(request, 'user_center_order.html', {'all_com': all_order_com, 'page_str': page_obj.html()})
 
 
 def user_center_site(request):

@@ -35,6 +35,8 @@ class OrderInfo(BaseModel):
         verbose_name = '订单表'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return str(self.trade_no)
 
 class OrderCommodity(BaseModel):
     '''订单商品表'''
@@ -47,3 +49,6 @@ class OrderCommodity(BaseModel):
     class Meta:
         verbose_name = '订单商品表'
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return str(self.order.trade_no) + self.sku.name

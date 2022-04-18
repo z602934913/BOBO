@@ -37,7 +37,7 @@
 	</div>
 
 	<div class="search_bar clearfix">
-		<a href="index.html" class="logo fl"><img src="../../static/images/logo.png"></a>
+		<a href="../index" class="logo fl"><img src="../../static/images/logo.png"></a>
 		<div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;提交订单</div>
 		<div class="search_con fr">
 			<input type="text" class="input_text fl" name="" placeholder="搜索商品">
@@ -190,6 +190,7 @@
             $("#order_btn").click(function (){
                 let chk_value = 0;
                 let zhf_value = 0;
+                let flag = 0;
                 $('input[type="checkbox"]').each(function(){
                     if ($(this).prop('checked') === true){
                         chk_value = ($(this).val())
@@ -198,6 +199,7 @@
                 if (!chk_value){
                     alert('收货地址还没选！')
                 }else{
+                    flag ++ ;
                     console.log(chk_value)
                 }
 
@@ -212,17 +214,24 @@
                     console.log(zhf_value)
                 }
 
-                $.ajax({
-                    url:'/order/submit',
-                    type:'post',
-                    data:{'chk_value':chk_value,'zhf_value':zhf_value},
-                    dataType:'JSON',
-                    success:function (res){
-                        if (res.status){
-                            alert('xxxx')
+                if (flag === 1){
+                    $.ajax({
+                        url:'/order/submit',
+                        type:'post',
+                        data:{'chk_value':chk_value,'zhf_value':zhf_value},
+                        dataType:'JSON',
+                        success:function (res){
+                            if (res.status){
+                                alert('订单提交成功！')
+                                {#location.reload()#}
+                                location.href = "../user/user_center_order"
+                            }else{
+                                console.log(res.im)
+                            }
                         }
-                    }
-                })
+                    })
+                }
+
             })
         }
 

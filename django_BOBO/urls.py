@@ -39,7 +39,7 @@ urlpatterns = [
 
     # 用户界面,
     path('user/user_center_info', u_v.user_center_info),
-    path('user/user_center_order', u_v.user_center_oredr),
+    path('user/user_center_order', u_v.user_center_order),
     path('user/user_center_site', u_v.user_center_site),
 
     # 商品首页
