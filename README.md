@@ -1,2 +1,2 @@
 # BOBO
-Nothing..
+django object
